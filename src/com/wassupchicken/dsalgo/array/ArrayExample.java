@@ -2,6 +2,7 @@ package src.com.wassupchicken.dsalgo.array;
 
 public class ArrayExample {
 
+    //print the elements of an array..
     public void printArray(int[] arr) {
         int n = arr.length;
         for(int i = 0; i < n; i++) {
@@ -10,6 +11,7 @@ public class ArrayExample {
         System.out.println();
     }
 
+    //declaring arrays
     public void arrayDemo() {
         int[] myArray = new int[5]; // default values 0 for int and dependent on dataType // indexes would be 0 1 2 3 4
         //printArray(myArray);
@@ -24,6 +26,7 @@ public class ArrayExample {
 
     }
 
+    //removing even numbers from an array
     int[] removeEven(int[] arr) {
         int oddCount = 0;
         for(int i = 0; i < arr.length; i++) {
@@ -44,6 +47,7 @@ public class ArrayExample {
         return result;
     }
 
+    //reversing an array using a forloop
     public void reverseArrayForLoop(int numbers[]) {
 
         int[] reversed = new int[numbers.length];
@@ -56,6 +60,7 @@ public class ArrayExample {
         printArray(reversed);
     }
 
+    //reversing an array with while loop
     public void reverseArrayWhile(int numbers[], int start, int end) {
         while(start < end) {
             int temp = numbers[start];
@@ -66,6 +71,7 @@ public class ArrayExample {
         }
     }
 
+    //finding a minimum in an array
     public int findMinimum(int[] arr) {
         int min = arr[0];
         for (int i = 1; i < arr.length; i++) {
@@ -91,6 +97,7 @@ public class ArrayExample {
         return secondMax;
     }
 
+    //moving zeros to the end while retaining the order of non zero numbers.
     void moveZeros(int[] arr) {
         int j = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -106,6 +113,7 @@ public class ArrayExample {
         }
     }
 
+    //resizing an array
     int[] resize(int[] arr, int capacity) {
         int[] temp = new int[capacity];
         for (int i = 0; i < capacity; i++) {
