@@ -7,6 +7,6 @@
 /dataSources/
 /dataSources.local.xml
 
-/src/com/wassupchicken/dsalgo
+/out/production/
 
 /.idea
