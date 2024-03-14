@@ -68,10 +68,109 @@ public class LinkedListExample {
                 previous = previous.next;
                 count++;
             }
-            ListNode current = previous.next;
-            newNode.next = current;
+            ListNode currentThatWillNewNodeWillPointTo = previous.next;
+            newNode.next = currentThatWillNewNodeWillPointTo;
             previous.next = newNode;
         }
+    }
+
+    // delete a node
+
+    public ListNode deleteFirst() {
+        if (head == null) {
+            return null;
+        }
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+
+    public ListNode deleteLast() {
+        if (head == null || head.next == null) {
+            return null;
+        }
+
+        ListNode curr = head;
+        int count = 0;
+        while (curr != null) {
+            count++;
+            curr = curr.next;
+        }
+        int counter = 1;
+        ListNode previous = head;
+        while (counter < count - 1) {
+            previous = previous.next;
+            counter++;
+        }
+
+        System.out.println("last   " + previous.data);
+        previous.next = null;
+
+        return previous;
+    }
+
+    public ListNode deleteLastExample() {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode current = head;
+        ListNode previous = null;
+        while(current.next != null) {
+            previous = current;
+            current = current.next;
+        }
+        previous.next = null;
+        return current;
+    }
+
+    public ListNode deleteAtPosition(int position) {
+        ListNode current = head;
+        if (position == 1) {
+            head = head.next;
+            current.next = null;
+        } else {
+            int count = 1;
+            ListNode previous = null;
+            while (count < position) {
+                previous = current;
+                current = current.next;
+                count++;
+            }
+            previous.next = current.next;
+
+        }
+
+        return current;
+    }
+
+    public void deleteAtPositionExample(int position) {
+        if (position == 1) {
+            head = head.next;
+        } else {
+            ListNode previous = head;
+            int count = 1;
+            while(count < position -1) {
+                previous = previous.next;
+                count++;
+            }
+
+            ListNode current = previous.next;
+            previous.next = current.next;
+        }
+    }
+
+    public boolean findElement(int data) {
+        ListNode current = head;
+        while (current != null) {
+            if (current.data == data) {
+                return true;
+            }
+            current = current.next;
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
@@ -90,7 +189,14 @@ public class LinkedListExample {
         //print singly linked list from head to end;
         sll.display();
         System.out.println("Length is " + sll.findLength());
-        sll.insertLast(100);
+        sll.insertAtPosition(100, 3);
+//        sll.display();
+//        sll.deleteFirst();
+//        sll.display();
+//        sll.deleteLast();
         sll.display();
+        sll.deleteAtPosition(5);
+        sll.display();
+        System.out.println(sll.findElement(100));
     }
 }
