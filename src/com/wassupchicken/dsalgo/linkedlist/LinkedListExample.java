@@ -162,6 +162,9 @@ public class LinkedListExample {
     }
 
     public boolean findElement(int data) {
+        if (head == null) {
+            return false;
+        }
         ListNode current = head;
         while (current != null) {
             if (current.data == data) {
@@ -171,6 +174,27 @@ public class LinkedListExample {
         }
 
         return false;
+    }
+
+    public void reverseLinkedList() {
+
+        ListNode current = head;
+        ListNode previous = null;
+        ListNode next = null;
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+
+        head = previous;
+    }
+
+    public int findNthNodeFromEnd(int n) {
+        ListNode mainPtr = head;
+
+        return 1;
     }
 
     public static void main(String[] args) {
@@ -187,16 +211,17 @@ public class LinkedListExample {
         third.next = fourth;
 
         //print singly linked list from head to end;
-        sll.display();
+  //      sll.display();
         System.out.println("Length is " + sll.findLength());
         sll.insertAtPosition(100, 3);
 //        sll.display();
 //        sll.deleteFirst();
 //        sll.display();
 //        sll.deleteLast();
+//        sll.display();
+//        sll.deleteAtPosition(5);
+//        sll.display();
+        sll.reverseLinkedList();
         sll.display();
-        sll.deleteAtPosition(5);
-        sll.display();
-        System.out.println(sll.findElement(100));
     }
 }
