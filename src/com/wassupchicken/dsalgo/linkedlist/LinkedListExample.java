@@ -191,11 +191,77 @@ public class LinkedListExample {
         head = previous;
     }
 
-    public int findNthNodeFromEnd(int n) {
-        ListNode mainPtr = head;
+    public ListNode findNthNodeFromEnd(int n) {
+        if (head == null) {
+            return null;
+        }
 
-        return 1;
+        if (n <=0) {
+            throw new IllegalArgumentException("Invalid value n");
+        }
+
+        ListNode mainPtr = head;
+        ListNode refPtr = head;
+        int count = 0;
+
+        while (count < n) {
+            refPtr = refPtr.next;
+            count++;
+        }
+
+        while (refPtr != null) {
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+
+        return mainPtr;
     }
+
+    public void removeDupFromSorted() {
+        if ( head == null) {
+            return;
+        }
+
+        ListNode current = head;
+        while(current != null && current.next != null) {
+            if (current.data == current.next.data) {
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+    }
+
+    public ListNode insertInSortedList(int value) {
+        ListNode newNode = new ListNode(value);
+        ListNode current = head;
+        ListNode temp = null;
+        while(current != null && current.data < newNode.data) {
+            temp = current;
+            current = current.next;
+        }
+        temp.next = newNode;
+        newNode.next = current;
+
+        return head;
+    }
+
+    public void deleteKeyInSortedSinglyLinkedList(int key) {
+        ListNode current = head;
+        ListNode temp = null;
+
+        while (current != null && current.data != key) {
+            temp = current;
+            current = current.next;
+        }
+
+        if (current == null) return;
+
+        temp.next = current.next;
+
+    }
+
+
 
     public static void main(String[] args) {
         LinkedListExample sll = new LinkedListExample();
