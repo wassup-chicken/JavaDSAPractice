@@ -1,6 +1,6 @@
 package src.com.wassupchicken.dsalgo.linkedlist;
 
-public class LinkedListExample {
+public class SinglyLinkedListExample {
     private ListNode head;
     private static class ListNode {
         private int data; //generic type
@@ -261,10 +261,121 @@ public class LinkedListExample {
 
     }
 
+    // because there's no end, there will be a time when overlaps
+    // slow will eventually catch up.
+    public boolean detectLoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
 
+        while(fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if(slowPtr == fastPtr) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void createALoopInLinkedList() {
+        ListNode first = new ListNode(1);
+        ListNode second = new ListNode(2);
+        ListNode third = new ListNode(3);
+        ListNode fourth = new ListNode(4);
+        ListNode fifth = new ListNode(5);
+        ListNode sixth = new ListNode(6);
+
+        head = first;
+        first.next = second;
+        second.next = third;
+        third.next = fourth;
+        fourth.next = fifth;
+        fifth.next = sixth;
+        sixth.next = third;
+    }
+
+    public ListNode startNodeInALoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while(fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if(slowPtr == fastPtr) {
+                return getStartingNode(slowPtr);
+            }
+        }
+        return null;
+    }
+
+    // Floyd's cycle detection algorithm.
+    private ListNode getStartingNode(ListNode slowPtr) {
+        ListNode temp = head;
+
+        while (temp != slowPtr) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+
+        return temp;
+    }
+
+    //Break loop from a linkedlist
+
+    public void removeLoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (slowPtr == fastPtr) {
+                removeLoop(slowPtr);
+                return;
+            }
+        }
+    }
+
+    private void removeLoop(ListNode slowPtr) {
+        ListNode temp = head;
+
+        while (temp.next != slowPtr.next) {
+            temp = temp.next;
+            slowPtr = slowPtr.next;
+        }
+        slowPtr.next = null;
+    }
+
+    //merge two sorted list question
+    public static ListNode merge(ListNode a, ListNode b) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+
+        while (a != null && b != null) {
+            if (a.data <= b.data) {
+                tail.next = a;
+                a = a.next;
+            } else {
+                tail.next = b;
+                b = b.next;
+            }
+
+            tail = tail.next;
+        }
+
+        if (a == null) {
+            tail.next = b;
+        } else {
+            tail.next = a;
+        }
+        return dummy.next;
+    }
 
     public static void main(String[] args) {
-        LinkedListExample sll = new LinkedListExample();
+        SinglyLinkedListExample sll = new SinglyLinkedListExample();
 
         sll.head = new ListNode(1);
         ListNode second = new ListNode(20);
@@ -287,7 +398,31 @@ public class LinkedListExample {
 //        sll.display();
 //        sll.deleteAtPosition(5);
 //        sll.display();
-        sll.reverseLinkedList();
-        sll.display();
+//        sll.reverseLinkedList();
+//        sll.display();
+//
+//        sll.createALoopInLinkedList();
+//        System.out.println(sll.detectLoop());
+//        System.out.println(sll.startNodeInALoop().data);
+//
+//        sll.removeLoop();
+//        sll.display();
+
+        SinglyLinkedListExample sll1 = new SinglyLinkedListExample();
+        sll1.insertLast(1);
+        sll1.insertLast(4);
+        sll1.insertLast(8);
+
+        SinglyLinkedListExample sll2 = new SinglyLinkedListExample();
+        sll2.insertLast(1);
+        sll2.insertLast(2);
+        sll2.insertLast(4);
+        sll2.insertLast(10);
+
+        sll1.display();
+        sll2.display();
+
+
+
     }
 }
