@@ -374,6 +374,28 @@ public class SinglyLinkedListExample {
         return dummy.next;
     }
 
+    //add two Singly Linked Lists.
+    public ListNode add(ListNode a, ListNode b) {
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        int carry = 0;
+        while (a!= null || b != null) {
+            int x = (a != null) ? a.data : 0;
+            int y = (b != null) ? b.data : 0;
+            int sum = carry + x + y;
+            tail.next = new ListNode(sum % 10) ;
+            tail = tail.next;
+            if (a != null) a = a.next;
+            if (b != null) b = b.next;
+        }
+        if (carry > 0) {
+            tail.next = new ListNode(carry);
+        }
+
+        return dummy.next;
+    }
+
+
     public static void main(String[] args) {
         SinglyLinkedListExample sll = new SinglyLinkedListExample();
 
@@ -387,26 +409,8 @@ public class SinglyLinkedListExample {
         second.next = third;
         third.next = fourth;
 
-        //print singly linked list from head to end;
-  //      sll.display();
-        System.out.println("Length is " + sll.findLength());
-        sll.insertAtPosition(100, 3);
-//        sll.display();
-//        sll.deleteFirst();
-//        sll.display();
-//        sll.deleteLast();
-//        sll.display();
-//        sll.deleteAtPosition(5);
-//        sll.display();
-//        sll.reverseLinkedList();
-//        sll.display();
-//
-//        sll.createALoopInLinkedList();
-//        System.out.println(sll.detectLoop());
-//        System.out.println(sll.startNodeInALoop().data);
-//
-//        sll.removeLoop();
-//        sll.display();
+        sll.display();
+
 
         SinglyLinkedListExample sll1 = new SinglyLinkedListExample();
         sll1.insertLast(1);
@@ -421,8 +425,6 @@ public class SinglyLinkedListExample {
 
         sll1.display();
         sll2.display();
-
-
 
     }
 }
