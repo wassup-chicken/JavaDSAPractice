@@ -12,6 +12,10 @@ public class SinglyLinkedListExample {
         }
     }
 
+    public SinglyLinkedListExample() {
+        this.head = null;
+    }
+
     //print elements of a singly linked list;
     public void display() {
         ListNode current = head;

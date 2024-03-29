@@ -11,11 +11,13 @@ public class DoublyLinkedList {
         private int data; //generic type
         private ListNode next;
 
+        //constructor
         public ListNode(int data) {
             this.data = data;
         }
     }
 
+    //constructor for doublylinkedlist
     public DoublyLinkedList() {
         this.head = null;
         this.tail = null;
